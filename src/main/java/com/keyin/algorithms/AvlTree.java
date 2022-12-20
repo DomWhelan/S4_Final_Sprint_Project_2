@@ -20,7 +20,7 @@ public class AvlTree extends BinarySearchTree{
                 1;
     }
 
-    private int getBalanceFactor(Node node){
+    public int getBalanceFactor(Node node){
        return this.getNodeHeight(node.left) - this.getNodeHeight(node.right);
     }
 
@@ -47,8 +47,12 @@ public class AvlTree extends BinarySearchTree{
         node.right = this.rotateLeftLeft(node.right);
         return this.rotateRightRight(node);
     }
-    public Node InsertNodeAvl(Node node, int value){
-        super.insert(node,value);
+
+    public void insertAVL(int value){
+        this.root = insertNodeAvl(root,value);
+    }
+    public Node insertNodeAvl(Node node, int value){
+        node = super.insert(node,value);
         int balanceFactor = this.getBalanceFactor(node);
         if(balanceFactor == UNBALANCED_LEFT){
             if(value < node.left.value){

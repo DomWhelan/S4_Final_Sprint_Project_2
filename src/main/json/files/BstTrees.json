@@ -1,0 +1,21 @@
+[
+  {
+    "Root": {
+      "left": {
+        "left": {
+          "left": null,
+          "right": null,
+          "value": 5
+        },
+        "right": null,
+        "value": 12
+      },
+      "right": {
+        "left": null,
+        "right": null,
+        "value": 34
+      },
+      "value": 12
+    }
+  }
+]

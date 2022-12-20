@@ -1,0 +1,72 @@
+[
+  {
+    "Root": {
+      "left": {
+        "left": null,
+        "right": null,
+        "value": 2
+      },
+      "right": {
+        "left": {
+          "left": null,
+          "right": null,
+          "value": 4
+        },
+        "right": {
+          "left": null,
+          "right": null,
+          "value": 6
+        },
+        "value": 5
+      },
+      "value": 3
+    }
+  },
+  {
+    "Root": {
+      "left": {
+        "left": {
+          "left": {
+            "left": {
+              "left": null,
+              "right": null,
+              "value": 1
+            },
+            "right": null,
+            "value": 2
+          },
+          "right": null,
+          "value": 3
+        },
+        "right": {
+          "left": {
+            "left": null,
+            "right": null,
+            "value": 6
+          },
+          "right": null,
+          "value": 7
+        },
+        "value": 5
+      },
+      "right": {
+        "left": null,
+        "right": {
+          "left": null,
+          "right": {
+            "left": null,
+            "right": {
+              "left": null,
+              "right": null,
+              "value": 62
+            },
+            "value": 22
+          },
+          "value": 20
+        },
+        "value": 11
+      },
+      "value": 8
+    }
+  }
+]
