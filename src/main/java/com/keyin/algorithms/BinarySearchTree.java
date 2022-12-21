@@ -28,35 +28,37 @@ public class BinarySearchTree {
         return root;
     }
 
-    public void deleteANode(Node node) {
-        deleteNode(this.root, node);
+    public void deleteANode(int value) {
+        deleteNode(this.root, value);
     }
 
-    public Node deleteNode(Node root, Node node) {
+    public Node deleteNode(Node root, int value) {
         if (root == null) {
             return null;
-        } else if (node.value < root.value) {
-            root.left = deleteNode(root.left, node);
-        } else if (node.value > root.value) {
-            root.right = deleteNode(root.right, node);
+        }
+        if (value < root.value) {
+            root.left = deleteNode(root.left, value);
+            return root;
+        } else if (value > root.value) {
+            root.right = deleteNode(root.right, value);
+            return root;
         } else {
-            if (root.left != null && root.right != null) {
-                int leftMax = findMaxData(root.left);
-                root.value = findMaxData(root.left);
-                root.left = deleteNode(root.left, new Node(leftMax));
+            if (root.left == null && root.right == null){
+                root = null;
                 return root;
             }
-            else if (root.left != null) {
-                return root.left;
+            if (root.left == null) {
+                root = root.right;
+                return root;
+            } else if (root.right == null) {
+                root = root.left;
+                return root;
             }
-            else if (root.right != null) {
-                return root.right;
-            }
-            else {
-                return null;
-            }
+            int aux = this.findMinData(root.right);
+            root.value = aux;
+            root.right = this.deleteNode(root.right,aux);
+            return root;
         }
-        return root;
     }
 
     public int findMaxData(Node root) {

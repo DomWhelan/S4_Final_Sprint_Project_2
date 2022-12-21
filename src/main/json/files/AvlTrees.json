@@ -26,28 +26,12 @@
     "Root": {
       "left": {
         "left": {
-          "left": {
-            "left": {
-              "left": null,
-              "right": null,
-              "value": 1
-            },
-            "right": null,
-            "value": 2
-          },
+          "left": null,
           "right": null,
-          "value": 3
+          "value": 12
         },
-        "right": {
-          "left": {
-            "left": null,
-            "right": null,
-            "value": 6
-          },
-          "right": null,
-          "value": 7
-        },
-        "value": 5
+        "right": null,
+        "value": 23
       },
       "right": {
         "left": null,
@@ -55,18 +39,14 @@
           "left": null,
           "right": {
             "left": null,
-            "right": {
-              "left": null,
-              "right": null,
-              "value": 62
-            },
-            "value": 22
+            "right": null,
+            "value": 99
           },
-          "value": 20
+          "value": 88
         },
-        "value": 11
+        "value": 52
       },
-      "value": 8
+      "value": 43
     }
   }
 ]

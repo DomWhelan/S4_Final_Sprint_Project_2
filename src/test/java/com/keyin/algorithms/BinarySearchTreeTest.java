@@ -37,7 +37,7 @@ public class BinarySearchTreeTest {
         Node nodeToDelete = new Node(4);
         BinarySearchTree testDeleteTree = new BinarySearchTree();
 
-        Assertions.assertNull(testDeleteTree.deleteNode(testDeleteTree.root,nodeToDelete));
+        Assertions.assertNull(testDeleteTree.deleteNode(testDeleteTree.root,4));
 
         testDeleteTree.insert(4);
         testDeleteTree.insert(3);
@@ -47,11 +47,13 @@ public class BinarySearchTreeTest {
 
         Assertions.assertEquals(4,testDeleteTree.root.value);
 
-        testDeleteTree.deleteANode(nodeToDelete);
+        testDeleteTree.deleteANode(4);
+        System.out.println();
+        testDeleteTree.preorder();
 
         Assertions.assertNotEquals(4,testDeleteTree.root.value);
-        Assertions.assertEquals(3,testDeleteTree.root.value);
-        Assertions.assertNull(testDeleteTree.root.left);
+        Assertions.assertEquals(6,testDeleteTree.root.value);
+        Assertions.assertNull(testDeleteTree.root.right);
 
     }
 

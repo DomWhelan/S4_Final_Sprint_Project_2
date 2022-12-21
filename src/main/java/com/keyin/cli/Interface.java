@@ -1,5 +1,6 @@
 package com.keyin.cli;
 
+import com.keyin.algorithms.AvlTree;
 import com.keyin.algorithms.BinarySearchTree;
 import com.keyin.utlilities.JsonConverter;
 import com.keyin.utlilities.JsonWriter;
@@ -75,18 +76,39 @@ public class Interface {
             }
         }
         BinarySearchTree BST = new BinarySearchTree();
-        sequence.forEach(value -> {
-            BST.insert(value);
-        });
+        sequence.forEach(BST::insert);
         System.out.println();
         System.out.println("BST tree created, saving to file.......");
         JSONObject treeJsonObject = converter.convertTreeToJsonObject(BST.root);
         writer.addToFile(treeJsonObject, BST_TREE_FILEPATH);
         System.out.println();
         System.out.println("BST tree saved to BstTrees.json");
+        System.out.println();
+        displayMenu();
     }
 
     private static void createAVL() {
+        boolean endInput = false;
+        ArrayList<Integer> sequence = new ArrayList<Integer>();
+        System.out.println("Please enter integers to create AVL tree, Enter 0 to end sequence");
+        while(!endInput){
+            int num = input.nextInt();
+            if(num == 0){
+                endInput = true;
+            } else {
+                sequence.add(num);
+            }
+        }
+        AvlTree AVL = new AvlTree();
+        sequence.forEach(AVL::insert);
+        System.out.println();
+        System.out.println("AVL tree created, saving to file.......");
+        JSONObject treeJsonObject = converter.convertTreeToJsonObject(AVL.root);
+        writer.addToFile(treeJsonObject, AVL_TREE_FILEPATH);
+        System.out.println();
+        System.out.println("AVL tree saved to AvlTrees.json");
+        System.out.println();
+        displayMenu();
     }
 }
 
