@@ -1,9 +1,5 @@
 package com.keyin.algorithms;
 
-import org.json.simple.JSONObject;
-
-import java.util.HashMap;
-
 public class BinarySearchTree {
 
     public Node root;

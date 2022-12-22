@@ -7,6 +7,8 @@ import com.keyin.utlilities.JsonWriter;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Interface {
@@ -39,9 +41,7 @@ public class Interface {
             } else {
                 createAVL();
             }
-
         }
-
     }
 
 
@@ -60,55 +60,107 @@ public class Interface {
         System.out.println("""
                 1. Create BST tree
                 2. Create AVL tree
+                0. Exit
                 """);
     }
 
     private static void createBST(){
-        boolean endInput = false;
-        ArrayList<Integer> sequence = new ArrayList<Integer>();
-        System.out.println("Please enter integers to create BST tree, Enter 0 to end sequence");
-        while(!endInput){
-            int num = input.nextInt();
-            if(num == 0){
-                endInput = true;
+        boolean endProgram = false;
+        while(!endProgram) {
+
+            boolean endInput = false;
+            ArrayList<Integer> sequence = new ArrayList<Integer>();
+            System.out.println("Please input integers to create BST tree, Enter 0 to end sequence");
+            while (!endInput) {
+                int num = input.nextInt();
+                if (num == 0) {
+                    endInput = true;
+                } else {
+                    sequence.add(num);
+                }
+            }
+            if(sequence.size() == 0){
+                System.out.println("No integers entered....returning to main menu");
+                endProgram = true;
+                displayMenu();
             } else {
-                sequence.add(num);
+                BinarySearchTree BST = new BinarySearchTree();
+                sequence.forEach(BST::insert);
+                System.out.println();
+                System.out.println("BST tree created, saving to file.......");
+                JSONObject treeJsonObject = converter.convertTreeToJsonObject(BST.root);
+                writer.addToFile(treeJsonObject, BST_TREE_FILEPATH);
+                System.out.println();
+                System.out.println("BST tree saved to BstTrees.json");
+                System.out.println();
+                System.out.println("The tree in Pre-order:");
+                BST.preorder();
+                System.out.println();
+                System.out.println("Max Value:      " + BST.findMaxData(BST.root));
+                System.out.println("Min Value:      " + BST.findMinData(BST.root));
+                System.out.println("Continue? Y or N");
+                String resume = input.next();
+                if (Objects.equals(resume.toUpperCase(), "Y")) {
+                    displayMenu();
+                } else if (Objects.equals(resume.toUpperCase(), "N")) {
+                    endProgram = true;
+                } else {
+                    System.err.println("Invalid Entry");
+                    endProgram = true;
+                    displayMenu();
+                }
             }
         }
-        BinarySearchTree BST = new BinarySearchTree();
-        sequence.forEach(BST::insert);
-        System.out.println();
-        System.out.println("BST tree created, saving to file.......");
-        JSONObject treeJsonObject = converter.convertTreeToJsonObject(BST.root);
-        writer.addToFile(treeJsonObject, BST_TREE_FILEPATH);
-        System.out.println();
-        System.out.println("BST tree saved to BstTrees.json");
-        System.out.println();
-        displayMenu();
     }
 
     private static void createAVL() {
-        boolean endInput = false;
-        ArrayList<Integer> sequence = new ArrayList<Integer>();
-        System.out.println("Please enter integers to create AVL tree, Enter 0 to end sequence");
-        while(!endInput){
-            int num = input.nextInt();
-            if(num == 0){
-                endInput = true;
+        boolean endProgram = false;
+        while(!endProgram) {
+            boolean endInput = false;
+            ArrayList<Integer> sequence = new ArrayList<Integer>();
+            System.out.println("Please input integers to create AVL tree, Enter 0 to end sequence");
+            while(!endInput){
+                int num = input.nextInt();
+                if(num == 0){
+                    endInput = true;
+                } else {
+                    sequence.add(num);
+                }
+            }
+            if(sequence.size() == 0){
+                System.out.println("No integers entered....returning to main menu");
+                endProgram = true;
+                displayMenu();
             } else {
-                sequence.add(num);
+                AvlTree AVL = new AvlTree();
+                sequence.forEach(AVL::insert);
+                System.out.println();
+                System.out.println("AVL tree created, saving to file.......");
+                JSONObject treeJsonObject = converter.convertTreeToJsonObject(AVL.root);
+                writer.addToFile(treeJsonObject, AVL_TREE_FILEPATH);
+                System.out.println();
+                System.out.println("AVL tree saved to AvlTrees.json");
+                System.out.println();
+                System.out.println("The tree in Pre-order:");
+                AVL.preorder();
+                System.out.println();
+                System.out.println("Balance Factor: " + AVL.getBalanceFactor(AVL.root));
+                System.out.println("Max Value:      " + AVL.findMaxData(AVL.root));
+                System.out.println("Min Value:      " + AVL.findMinData(AVL.root));
+                System.out.println();
+                System.out.println("Continue? Y or N");
+                String resume = input.next();
+                if (Objects.equals(resume.toUpperCase(), "Y")) {
+                    displayMenu();
+                } else if (Objects.equals(resume.toUpperCase(), "N")) {
+                    endProgram = true;
+                } else {
+                    System.err.println("Invalid Entry");
+                    endProgram = true;
+                    displayMenu();
+                }
             }
         }
-        AvlTree AVL = new AvlTree();
-        sequence.forEach(AVL::insert);
-        System.out.println();
-        System.out.println("AVL tree created, saving to file.......");
-        JSONObject treeJsonObject = converter.convertTreeToJsonObject(AVL.root);
-        writer.addToFile(treeJsonObject, AVL_TREE_FILEPATH);
-        System.out.println();
-        System.out.println("AVL tree saved to AvlTrees.json");
-        System.out.println();
-        displayMenu();
     }
 }
 

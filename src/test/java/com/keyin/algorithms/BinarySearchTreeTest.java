@@ -12,7 +12,6 @@ public class BinarySearchTreeTest {
         Assertions.assertNull(testBst.root);
     }
 
-
     @Test
     public void insertTest(){
 
@@ -72,8 +71,5 @@ public class BinarySearchTreeTest {
         Assertions.assertTrue(searchTestTree.search(16));
 
     }
-
-
-
 
 }
