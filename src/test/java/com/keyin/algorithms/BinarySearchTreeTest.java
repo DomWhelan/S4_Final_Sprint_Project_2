@@ -23,6 +23,7 @@ public class BinarySearchTreeTest {
         testBstTree.insert(4);
         testBstTree.insert(1);
 
+        // Confirm desired behaviour on insert method
         Assertions.assertEquals(5,testBstTree.root.value);
         Assertions.assertEquals(8,testBstTree.root.right.value);
         Assertions.assertEquals(6,testBstTree.root.right.left.value);
@@ -33,7 +34,6 @@ public class BinarySearchTreeTest {
     @Test
     public void deleteANodeTest(){
 
-        Node nodeToDelete = new Node(4);
         BinarySearchTree testDeleteTree = new BinarySearchTree();
 
         Assertions.assertNull(testDeleteTree.deleteNode(testDeleteTree.root,4));
@@ -44,13 +44,16 @@ public class BinarySearchTreeTest {
 
         testDeleteTree.preorder(testDeleteTree.root);
 
+        // Confirm root value
         Assertions.assertEquals(4,testDeleteTree.root.value);
 
         testDeleteTree.deleteANode(4);
         System.out.println();
         testDeleteTree.preorder();
 
+        // Confirm deletion
         Assertions.assertNotEquals(4,testDeleteTree.root.value);
+        // Confirm root replacement
         Assertions.assertEquals(6,testDeleteTree.root.value);
         Assertions.assertNull(testDeleteTree.root.right);
 
